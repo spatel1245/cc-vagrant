@@ -19,7 +19,15 @@ SET GLOBAL max_connect_errors=10000;"
 mysql -u root -proot -e "CREATE USER 'vagrant'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON *.* TO 'vagrant'@'localhost'; FLUSH PRIVILEGES;"
 
 ############# DO NOT MODIFY ANYTHING ABOVE OR BELOW THIS COMMENT SECTION #############
-# create mysql resources here
+mysql -u root -proot -e "CREATE DATABASE cs1660 ;"
+mysql -u root -proot cs1660 -e "
+CREATE TABLE pixel_data (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+    date DATE not null, 
+    useragent VARCHAR(255), 
+    ip VARCHAR(255) NOT NULL, 
+    thirdpartyid VARCHAR(255)
+) ;"
 
 ######################################################################################
 systemctl restart mysql
